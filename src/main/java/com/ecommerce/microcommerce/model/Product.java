@@ -2,11 +2,20 @@ package com.ecommerce.microcommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.Length;
 
-@JsonIgnoreProperties(value={"prixAchat","id"})
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+//@JsonIgnoreProperties(value={"prixAchat","id"})
+@Entity
 public class Product {
-
+    @Id //la clé de notre entité
+    @GeneratedValue //auto incrementé
     private int id;
+
+    @Length(min=3, max=20,message = "La longueur doit être comprise entre 3 et 20")
     private String nom;
     private int prix;
 
